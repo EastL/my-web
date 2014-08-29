@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+
+    <body>
+        <font size="6" align="center"><h2> 七月進度回顧 </h2></font> <p> 
+        <dd>
+        <dl>
+            <li><font size="3"><h4> 了解離散傅立葉轉換</h4></font></li>
+                <dd>
+                由於我完全沒有傅立葉轉換的基礎，我在網路上找到一個大學老師所寫的
+                <a href = "http://ccjou.wordpress.com/" target = "_blank"> 「線代啟示錄」 </a>
+                ，他裡面概念描述的非常清楚，於是我從傅立葉級數開始看，到傅立葉轉換、離散傅立葉轉換、快速傅立葉轉換，讓我掌握了整個傅立葉轉換的概念。
+                <ul>
+                <li> <a href = "http://ccjou.wordpress.com/2012/03/30/%E5%82%85%E7%AB%8B%E8%91%89%E7%B4%9A%E6%95%B8-%E4%B8%8A/" target = "_blank"> 傅立葉級數 </a> </li>
+                    <dd>
+                        所有的週期函式都能夠用簡單的週期函式線性組合而成，傅立葉提出了利用無限個正弦與餘弦來組合成原本的函式，並且利用了尤拉公式將級數以指數的方式表達。
+                    </dd>
+                <li> <a href = "http://ccjou.wordpress.com/2012/04/03/%E5%82%85%E7%AB%8B%E8%91%89%E7%B4%9A%E6%95%B8-%E4%B8%8B/" target = "_blank"> 傅立葉轉換</a> </li>
+                    <dd>
+                        若為非週期函式，意味著週期無限大，將週期推廣為無限大產生了傅立葉轉換，傅立葉轉換所計算的值相當於傅立葉級數裡面的傅立葉系數，且傅立葉轉換能夠將原本時域的函式轉換為頻域，而逆傅立葉轉換則是計算回原本傅立葉級數，所以能將頻域轉回時域。
+                    </dd>
+                <li> <a href = "http://ccjou.wordpress.com/2012/04/19/%E9%9B%A2%E6%95%A3%E5%82%85%E7%AB%8B%E8%91%89%E8%BD%89%E6%8F%9B/" target = "_blank"> 離散傅立葉轉換</a> </li>
+                    <dd>
+                       將原本的連續數列轉換為離散數列，在特定區間裡劃分成N個等區間，利用這N個點進行傅立葉轉換，轉換完之後也會得到N個點，這N對N的轉換能夠表示成矩陣的形式，經過傅立葉矩陣便能進行傅立葉轉換。 
+                    </dd> 
+                <li> <a href = "http://ccjou.wordpress.com/2012/05/25/%E5%BF%AB%E9%80%9F%E5%82%85%E7%AB%8B%E8%91%89%E8%BD%89%E6%8F%9B/" target = "_blank"> 快速傅立葉轉換</a> </li>
+                    <dd>
+                        這邊是傅立葉矩陣的推廣，它有效的降低了時間複雜度，將原本的O(n<sup>2</sup>)降低為O(nlog<sub>2</sub>n)，使得傅立葉轉換時不需要進行那麼多矩陣乘法。
+                    </dd>
+                </ul>
+                </dd>
+            <li><font size = "3"><h4> 了解psychoacoustical phase threshold </h4></font></li>
+                <dd>
+                    這邊讀了兩篇文獻，主要是了解
+                    <a href = "../paper/maa.pdf" target = "_blank"> minmum audible angle </a>
+                    (MAA)與
+                    <a href = "../paper/IPD.pdf" target = "_blank"> interaural phase difference </a>
+                    (IPD)。MAA在角度小於1度時，人耳無法分辨出正確的位置，利用這一特點計算出IPD的最大值，並以此作為門檻，只要左右聲道的相位角差值小於此IPD最大值，便能夠進行資料隱藏。
+                </dd>
+            <p>    
+            以上的概念都能在左邊頁面找到，裡面有詳細的概念與公式推導。
+            <p>
+            <li><font size = "3"><h4> 舉出在frequency domain 下如何進行PVD的例子 </h4></font></li>
+            <dd>
+                這邊我打算在傅立葉轉換後，將資料藏在頻域的振幅裡，但是這邊的區間可能需要做實驗才有辦法得到，目前無法得知轉為頻域情況下，它的振幅範圍會在哪邊，或者設定一範圍，在此範圍之外的話一律不隱藏。
+                <p>
+                <a href = "../presentation/DFT_pvd_example.pptx"> 這邊舉例子說明。 </a>
+                <br>
+                在這例子中，由於在作PVD時更改了某些頻率的振幅，破壞了原本傅立葉轉換後的對秤性，因此會有虛部出現(在聲音的資料裡面不該有虛數)，另外在整個過程中也為了隱藏的需求而把某些小數點取近似值，這是否會影響到之後取資料時機密資料的失真，還需要進一步釐清，這邊目前在思考如何解決這些問題。
+
+            </dd>
+        </dl>
+        </dd>
+    </body>
+</html>

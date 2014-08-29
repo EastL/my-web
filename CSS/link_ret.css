@@ -1,0 +1,35 @@
+#button{
+    font-weight:bolder;
+    color:#208080;
+    font-size:18px;
+
+    margin:0px;
+
+    padding:0px;
+}
+
+#button li{
+    line-height:2em;
+    width:170px;
+    list-style-type:none;
+    text-align:center;
+    background-color:#000000;
+    letter-spacing:2px; 
+}
+
+#button li a{
+    display:block;
+    width:170px;
+    height:50px;
+    color:#fff;
+    text-decoration:none; 
+}
+
+#button li a:hover{
+    background-color:#ffff00;
+    color:#00a0a0;
+}
+
+#button li a:active{
+    background-color:#a0f0f0;
+}

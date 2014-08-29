@@ -1,0 +1,39 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <head>
+        <title> Encoder & Decoder </title>
+    </head>
+    <body>
+        <font size = "6" align = "center"> <h3> Linear Block Codes</h3> </font>
+        <dl>
+            <dd>
+		在講linear block code之前，先看一個74 hamming code 實際例子
+		<p>
+		<img src = "../../file/errcode01.jpg"> 
+		<p>
+		TABLE 1中message(u)與code word(v)的關係為 v = u‧G ，u為原始資訊，透過hamming編碼得到code word，code word前3個bit為parity-check，後4個bit為message。
+		<p>
+		在這邊先介紹何謂hamming distance，每個hamming code的每個元素都是0跟1，hamming code定義是兩個hamming code之間有幾個不同的元素。例：0010跟1011的hamming distance為2。
+		<p>
+		在TABLE 1裡，由於message長度只有4，每個message與message的hamming distance最小為1，經過hamming編碼後的code word有7個bit，hamming distance最小值為3，可以在錯一個bit的情況下自動更正錯誤。
+		<p>
+		當接收者收到錯一個bit的code word時，將此error code與其他code word比較，找出hamming distance為1的code word，此code word就是接收者收到的正確code word。因為任兩個code word之間的hamming distance至少為3(0000000,1101000)，所以當其中一個(0000000)錯了一個bit(0000001)，會與原本的code word有1個bit的差距(hamming distance為1)，然後跟第2接近code word(1101000)的hamming distance為2。
+		<p>
+		<table>
+		<tr>
+		    <td>
+		        <img src = "../../file/errcode02.jpg">
+		    </td>
+		    <td>
+			<img src = "../../file/errcode03.jpg">
+		    </td>	
+		</tr>    
+		<tr>
+		    <td align = "center"> TABLE 2 </td>
+		    <td align = "center"> TABLE 3 </td>
+		</tr>
+		</table>
+		<p>
+        </dl>
+    </body>
+</html>

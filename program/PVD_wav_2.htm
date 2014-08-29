@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+        <style>
+            body{
+               background-color:#000000;  
+            }
+            h1{
+                color:white;
+                font-size:18px;
+                text-indent:50px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            初步能夠藏入檔案，但是聽的出來有雜訊，可能遇到與藏圖時一樣的問題。
+            <a href = "../file/left.wav" target = "inner"> 藏入前 </a>
+            與
+            <a href = "../file/testout.wav" target = "inner"> 藏入後 </a>比較。
+            在取出部分，目前預定了10bit大小來放秘密訊息的大小，考慮後面會超過這數字所以定義成可變動(但文字的話不用那麼多bit浪費空間)，如果這取出動作能夠成功的話直接套用在圖形、聲音、文字都能試用。
+        </h1>
+        <iframe name = "inner" charset = "UTF-8" src = "audio_hidefile.cpp" style = "width:800px;height:400px;background-color:white;">
+        </iframe>
+    </body>
+</html>

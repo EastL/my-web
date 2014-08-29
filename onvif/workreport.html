@@ -1,0 +1,61 @@
+<html>
+<head>
+</head>
+<body>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<font size="6"><h3> Hydra - Eric</h3></font>
+<dl>
+<dd>
+先跟大家說聲抱歉，因為禮拜二晚上我們學校有活動，時間剛好卡到兩個禮拜一次的會議，但我真的很想過去參加系上的活動，所以只好寫了這個網頁來review我這個禮拜的進度以及之後的打算，抱歉了意門的各位夥伴......
+
+<p>
+目前在抓影像部分，由於camera還未拿到，所以server端內容的部分無法執行，所以只能了解整個傳送的方向及server那邊的資料型態會是如何接收跟傳送。
+<p>
+這邊DEMO client  server雙向溝通讓大家看
+<br>
+<ul>
+<li>
+client端呼叫server函式部分
+<p>
+<img src = "../file/work01.jpg">
+<br>
+AddPTZConfiguration 為server端的涵式，configuration為client端傳送的資料，configurationresponse為server端回傳的資料，在這邊我預設回傳資料的infor為1。
+<p>
+<li>
+server端函式定義
+<p>
+<img src = "../file/work02.jpg">
+<br>
+server端首先先印出訊息代表收到client要求，接著更改configurationresponse的infor，再把整個struct傳回client
+<p>
+(struct裡的定義)
+<p>
+<img src = "../file/work03">
+<li>
+server端執行
+<p>
+<img src = "../file/work04">
+<li>
+client端執行
+<p>
+<img src = "../file/work05">
+
+
+</ul>
+我client端預設info為1，當info有被改變時印出接收到改變的值，所以從client發訊息到server接收再回傳給client算是成功了。
+<br>
+我的程式在
+<a href = "http://bazaar.launchpad.net/~s100321048/+junk/soap/files" target = "_blank"> Launchpad </a>
+有完整的程式碼
+<p>
+目前我讀的streaming文件大致上的概念就是這樣，client端資料包成一個struct後，呼叫server函式同時將struct傳給server，server運作完將response struct同時傳回client。
+<br>
+大方向大概是這樣client端會先向server取得profile與URI，之後就能開始發出streaming的要求，server端就會開始傳送。
+<p>
+之後拿到camera後先學會van給的相關文件，然後再進行原本預定要進行的向server抓影像以及IP camera 影像格式部分。
+<p>
+<font size = "7"> 最後再跟大家說聲抱歉....這活動一年只有一次而已，我真的超級想參加，除了抱歉還是抱歉。 </font>
+
+</dl>
+
+</body>

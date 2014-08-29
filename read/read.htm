@@ -1,0 +1,50 @@
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<body bgcolor = "#f0f9ff">
+<dd>
+<OL>
+<LI>
+<a href="http://spectrum.ieee.org/energy/the-smarter-grid/privacy-on-the-smart-grid/" target = "_blank">Privacy on the Smart Grid</a><p>這篇講到智慧電表的隱私，他提供了兩種解決方法，第一種解決方案是：對智慧電表上面的資料進行加密，但是加密的這一方如果是電力公司，那麼他們有可能會在帳單上面作手腳，於是必須要有第3方中介來進行資料加密這個動作。第二個方法是：把電量儲存再額外的充電電池裡面，這樣就能避免用電需求高但供電量低與停電這兩種狀況，電表就能即時的分配電量，但缺點就是把店存入電池在拿出來用這過程會消耗掉某些電量。文章最後有提到，最好的辦法就是要有一個好的政策來規範智慧電表的使用。
+<LI>
+<a href="http://spectrum.ieee.org/telecom/internet/vice-over-ip-the-voip-steganography-threat" target = "_blank">VOIP</a><p>
+正常的資料隱藏有個缺點，會留下線索讓人察覺。這篇文章提到了另一種資料隱藏的方法，通訊協定。第一種方法：及時通訊裡延遲的資訊會被丟掉，利用正常的程式會把延遲過久的封包過濾掉，把隱藏資訊藏在延遲的封包裡。第二種：利用checksum的機制，他會在損壞的封包裡區分出正確的封包，其他的封包會丟掉，所以資料可以藏在會讓checksum認為那不是正確封包的損壞封包上。第三種：藏在header檔裡。每個資料最前面都繪有一個head專門描述這整個資料，可以將資訊藏在經常變動的變數裡。
+<LI>
+<a href="http://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi/login?o=dnclcdr&s=id=%22098CYUT5652001%22.&searchmode=basic" target = "_blank"> The analysis of the steganographic technique with high image quality using secret data division and pixel value differencing </a><p>
+為了提高進行PVD隱藏之後的偽裝品質，便有了利用模數運算來縮小PVD所要藏入的差值。原本的PVD是直接把秘密資訊直接取代掉差值，秘密資訊與差值雖然會被取在同一個差值區間內，但我們總希望差距越小越好，於是有人提出了模數運算，利用mod這動作來縮小差距。取一個適當的參數e，讓新的差值mod e之後能夠等於秘密資訊，如此便能將差值的差距縮小。只要將差值mod e，把區間的上限值與下限值的差以2為底數做log知道秘密資訊站多少個bit，便能計算出原本的秘密資訊。而MPVD除了上述縮小差值外，他另外還加了一個加密參數B，讓他去變動上下限值，使區間之間不會是固定的，如此便能解決PVD以固定的下限值去隱藏資訊的缺點(固定值再加上隱藏資訊會使差值直方圖呈階梯狀不自然分部)，而縮小差值差距則能提升偽裝影像的品質。
+<LI>
+<a href = "http://wenku.baidu.com/view/0e5c570003d8ce2f006623d2.html" target = "_blank">  RS 	steganalysis </a><p>
+要了解RS分析之前，首先要先知道一些名詞以及一些函數功能。F(1):0←→1,2←→3,4←→5,.....，F(-1):-1←→0,1←→2,3←→4,....，F(0):x=x，以上三種函數，是對每個數字做+1或-1的動作，而LSB隱藏法(藏於最後一個bit)就相當於是做了F(1)或F(0)動作，由於LSB是將最後一個bit替換成秘密訊息，倒數第2個bit不會被更動，那最後一個bit就可能從0→1，1→0(F(1)動作)(2,3互換也是：10,11，4,5互換：100,101)，0→0，1→1(F(0)動作)。然後我們在定義一個函數f，他作用是將所有相鄰的值的差做總和。mask為1,0,-1相對應到(F(1),F(0),F(-1))，以下用Fm代表，G為某像素組的像素質(0~255)。如果f(Fm(G)) > f(G)，稱為Regular，f(Fm(G)) < f(G)，稱為Singular，f(Fm(G)) = f(G)，稱為Unusable。Rm為F(1)作用下Regular占所有像素組的比例，R-m為F(-1)作用下Regular占所有像素組的比例，Sm為F(1)作用下Singular占所有像素組的比例，S-m為F(-1)作用下Singular占所有像素組的比例。正常情況下無論用F(1)或F(-1)都會同等程度的混亂圖像，所以Rm跟R-m應該要非常接近，Sm與S-m也要非常相近，如果圖像是經由LSB隱藏了資訊在裡面，那麼這圖像等同於已經做過了F(1)這動作，如果我再分別做一次F(1)跟F(-1)那對稱性就會完全跑掉，藉此可得知圖像是否被嵌入訊息。
+<LI>
+<a href="http://www.researchgate.net/publication/223787992_Steganalysis_and_payload_estimation_of_embedding_in_pixel_differences_using_neural_networks" target="_blank"> Steganalysis and payload estimation of embedding in pixel-Draft </a><p>
+
+PVD是利用落的區間下去分類，所以區間長度是固定的，在差值直方圖理這些區間內每個差
+
+值所出現的頻率就會差不多，所以就能用肉眼判斷差值直方圖是否呈現不自然分布。
+<br>
+MPVD修改了固定區間值的問題，並且還利用了模數運算解決了在相同區間內出現頻率差不多的問題，但是如果再進行一次MPVD來觀測藏入前藏入後的差值直方圖的變化，便能偵測到是否有經由MPVD隱藏。
+<br>
+在差值直方圖裡面，取了0，1，-1這3個差值出現的次數來計算Q值(由於變化量最大的就是0所出現的次數)，然後依據MPVD隱藏前後Q值的比例來偵測。
+<br>
+但是無法用同一標準來判斷所有的MPVD，變化的幅度取決於藏入了多少的資訊，於是此篇文章利用了ANN(artificial neural network)學習了各種資訊，依照藏入的比例(0% , 20% , 40% , 60% , 80% , 100%)來分類，並且一樣的特徵透過MLP neural network估計藏了多少資訊在裡面。
+<br>
+最後實驗的結果在極端值時(0%, 60%, 80%, 100%)判斷正確率還蠻高的(96%, 92%, 96%, 98%)，而總準確度也高達了88.3%。
+<li>
+<a href = "file/audioPVD.pdf" target = "_blank"> Audio Steganography Using Modified LSB and PVD </a>
+<p>
+這篇主要探討的是他們自己所修改的LSB方法以及原有的PVD，做的是聲音的資訊隱藏。修改的LSB其主要目的為縮小與原始資料差距。例如：我要將以下資訊的倒數第4個bit改為0，0100 1000，如果直接修改，那麼會與原始資訊差了8(2的3次方)，但如果改成 0100 0111，那麼與原始資訊就只會相差1，他有一套詳細的演算法，有興趣的可進去連結看paper，而PVD的方法他並沒有做修改，所以它的優缺點可參考我的presentation。此片論文最後有做了效能分析，並指出這兩種方法致命傷就是很容易就被偵測到有進行資訊隱藏，未來希望能有更有效率的方法來增加capacity。
+
+<li>
+<a href = "../file/Spread_Spectrum.pdf" target = "_blank"> Spread Sectrum Audio Steganography using Sub-band Phase Shifting </a>
+<p>
+首先，這裡有篇
+<a href = "file/SpreadSpectrum1.ppt"> 簡報 </a>
+簡單介紹一下何謂展頻技術。簡單介紹一下何謂展頻技術。
+<br>
+一個要被隱藏的資訊經由展頻再藏入每個頻道裡的話，資料的錯誤比率回跟Spreading rate成反比。也就是說，當spreading rate越大，資料錯誤率就會越小，但是傳送速路會變差，這篇論文就是在探討如何降低資料錯誤比例，但又不影響傳送的速率。
+<br>
+原始音訊與經由展頻後音訊的correlation如果越高，那麼錯誤的比例就會越高，本篇論文就是使用sub-band phase shifting來調整correlation的高低，藉由此方法來降低資料錯誤的比率。但要注意的是，sub-band frequency在1KHz以內的話，不管怎麼調sample shift，他的correlation永遠都很高，所以乾脆就把sub-band frequency在1KHz以內的通通消除，只取其餘1KHz以上的部分。
+<br>
+最後因為這篇論文用了M-sequence code來做展頻的動作，所以接收方解碼時只要照著編碼時一樣的code就可解碼，加上再用sub-band phase shifting降低傳送錯誤比例，與傳統資訊隱藏比較的話，資料被竊取機率降低了許多。
+
+</OL>
+</dl>
+</body>

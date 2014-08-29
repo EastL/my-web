@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+        <style>
+            body{
+               background-color:#000000;  
+            }
+            h1{
+                color:white;
+                font-size:18px;
+                text-indent:50px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            目前做到能夠經由PVD隱藏訊息，但是我想pvd是利用兩相鄰像素差異來藏訊息，所以應該要改成同一顏色的兩相鄰像素而不是同一位置的不同顏色像素。
+            <br>
+            目前遇到的問題是：
+            <br>
+            如果要截取訊息時，要怎麼做才能知道訊息已經截取結束了不會一直做下去。
+            <br>
+            另一問題是，遇到0以下的時候該怎麼解決，像素不會有負值，如果是用unsigned 	char又會跳回最大值。
+        </h1>
+        <iframe name = "inner" charset = "UTF-8" src = "pvd.cpp" style = "width:800px;height:400px;background-color:white;">
+        </iframe>
+    </body>
+</html>

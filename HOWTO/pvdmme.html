@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <title> 專題其末程式 </title>
+    </head>  		
+    <body>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<font size = "6" align = "center" ><h3> Image steganographic scheme based on pixel-value differencing and matrix embedding methods </h3></font><p>
+        <dl>
+            <dd>
+            <li> <font size = "3"><h2> Platform </h3></font> 
+                 <dd>
+                 ubuntu 12.04.4 LTS <br>
+                 gcc version 4.6.3 (Ubuntu/Linaro 4.6.3-1ubuntu5) <br>
+                 library  libsndfile (
+                 <a href = "libsndfile.html" target = "_blank"> how to install libsndfile </a> ) <br>    
+            </dd>
+            <li> <font size = "3"><h2> Where to download code </h3></font> 
+            <dd>
+                 在ms12上的cvsroot裡有steganographic_Eric資料夾，check out後應有以下檔案：   <br>
+            <table width = "500"><tr>
+             <p>
+                 <td>
+                 <li><a href = "../program/steganography/README.txt" target = "_blank"> README.txt </a></li>
+                 <li><a href = "../program/steganography/bmpread.h" target = "_blank"> bmpread.h </a></li>
+                 <li><a href = "../program/steganography/bmpwrite.h" target = "_blank"> bmpwrite.h </a></li>
+                 <li><a href = "../program/steganography/datahiding.h" target = "_blank"> datahiding.h </a></li>
+                 <li><a href = "../program/steganography/format.h" target = "_blank"> format.h </a></li>  
+                 </td>
+
+                 <td>
+                 <li><a href = "../program/steganography/datahiding.cpp" target = "_blank"> datahiding.cpp </a></li>
+                 <li><a href = "../program/steganography/format.cpp" target = "_blank"> format.cpp </a></li>
+                 <li><a href = "../program/steganography/steganography.cpp" target = "_blank"> steganography.cpp </a></li>
+                 </td>
+
+                 <td>
+                 <li><a href = "../program/steganography/psnr.cpp" target = "_blank"> psnr.cpp </a></li>
+                 <li><a href = "../program/steganography/testworst.cpp" target = "_blank"> testworst.cpp </a></li>
+                 </td> 
+            </tr></table>
+                 <p> 之後會用到的測試檔案可在此下載
+                 <a href = "../file/test.zip"> testfile </a> 
+                 ，或者到我的
+                  <a href = "https://github.com/EastL/steganography" target = "_blank"> GitHub</a>
+                 上下載。
+                 <br>
+            </dd>
+            <li> <font size = "3"><h2> How to compile and test </h3></font> 
+                 <dd>
+                     compile :  g++ steganography.cpp format.cpp datahiding.cpp -o strganography.exe -lsndfile <br>
+                     執行可參考
+                     <a href = "../program/steganography/README.txt" target = "_blank"> README </a>
+                     或是以下範例。    <br>
+                 </dd>
+            <li> <font size = "3"><h2> Collect the experimental result </h3></font> 
+                 <table border = "1">
+                     <tr>
+                         <td>
+                             <img src = "../file/1.jpg" align = "center"> 
+                         </td>
+
+                         <td>
+                             這張表是在500-1裡面分別隱藏了200.bmp(120K) 300.bmp(270K) 350.bmp(296K)三張圖，以下所執行的是PVD Modify Matrix Embedding steganographic <br>
+                             <dd>
+                             ./steganography.exe -xf test/500-1.bmp test/200.bmp test/testout-1.bmp pm <br>
+                             ./steganography.exe -xf test/500-1.bmp test/300.bmp test/testout-2.bmp pm <br>
+                             ./steganography.exe -xf test/500-1.bmp test/350.bmp test/testout-3.bmp pm <br>
+                             </dd>
+                             若要進行PVD Matrix Embedding 請修改datahiding.cpp第283.284行的get_better function，修改為matrix_embedding，再執行上列指令便能進行隱藏。  <br>
+                             <img src = "../file/4.png"> <br>
+                             隱藏完後利用psnr.cpp來計算PSNR值，compile: 
+                             <dd>
+                                 g++ psnr.cpp format.cpp -o psnr.exe -lsndfile
+                             </dd>
+                             計算PSNR:
+                             <dd> ./psnr.exe test/500-1.bmp test/testout-1.bmp    (此PSNR為500-1圖經過PVD ME隱藏200.bmp前後破壞程度) </dd>   
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <img src = "../file/2.jpg">
+                         </td>
+                         <td>
+                             此表為在500-1 ~500-5檔案裡進行了3種隱藏法的比較圖，隱藏的是350.bmp，機密影像無法完全藏入，會回傳剩餘多少bit還沒隱藏。  <p>
+                             在這邊以500-1.bmp 隱藏350.bmp為例子：         <br>
+                             <dd>
+                                 PVD :  ./steganography.exe -xf test/500-1.bmp test/350.bmp test/testout-1.bmp <br>
+                                 PVD LSB : ./steganography.exe -xf test/500-1.bmp test/350.bmp test/testout-2.bmp pl <br>
+                                 PVD MME : ./steganography.exe -xf test/500-1.bmp test/350.bmp test/testout-3.bmp pm    (請注意這邊datahiding.cpp中283行與284行應使用get_better函式) <br>
+                             </dd><p>
+                             回傳的數字可以計算出藏了多少byte，PSNR值請執行psnr.exe: 
+                             <dd>
+                                 ./psnr.exe test/500-1.bmp test/testout-1.bmp <br>
+                                 ./psnr.exe test/500-1.bmp test/testout-2.bmp <br>
+                                 ./psnr.exe test/500-1.bmp test/testout-3.bmp <br>
+                             </dd>
+                         </td>
+	             </tr>
+                     <tr>
+                         <td>
+                             <img src = "../file/3.jpg">
+                         </td>
+                         <td>
+                             此表為MME的掩護序列值之worst case，可以執行testworst得到：
+                             <br>
+                             compile : g++ testworst.cpp -o testworst.exe <br>
+                             執行 : ./testworst.exe <br>
+                             <p>
+                             執行結果代表意義為    (掩護序列值:MME隱藏前後差值最大值)
+                             <br>
+                             <img src = "../file/worst.png">
+                         </td>
+                     </tr>
+                 </table> 
+            </dd>
+        </dl>
+    </body>
+</html>

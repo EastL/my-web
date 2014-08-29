@@ -1,0 +1,246 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<font size="6"><h3> NCNU Research </h3></font>
+<table width = "500">
+<tr>
+<td>
+<UL>
+<LI><a href="#read"> Papers which I am reading </a>
+<LI><a href="#program"> Programs which I am writing </a>
+<LI><a href="#presentation"> Presentation files I have done </a>
+<LI><a href="#howto"> HOW TO </a>
+</UL>
+</td>
+<td>
+<UL>
+<LI><a href="#audio_PVD"> 科技部計畫 </a>
+</UL>
+</td>
+</tr></table>
+<p>
+<hr>
+
+<h2 id="read"> READ </h2>
+
+<dl>
+<dd>
+<OL>
+<LI>
+<a href="http://spectrum.ieee.org/energy/the-smarter-grid/privacy-on-the-smart-grid/" target = "_blank">Privacy on the Smart Grid</a><p>這篇講到智慧電表的隱私，他提供了兩種解決方法，第一種解決方案是：對智慧電表上面的資料進行加密，但是加密的這一方如果是電力公司，那麼他們有可能會在帳單上面作手腳，於是必須要有第3方中介來進行資料加密這個動作。第二個方法是：把電量儲存再額外的充電電池裡面，這樣就能避免用電需求高但供電量低與停電這兩種狀況，電表就能即時的分配電量，但缺點就是把店存入電池在拿出來用這過程會消耗掉某些電量。文章最後有提到，最好的辦法就是要有一個好的政策來規範智慧電表的使用。
+<LI>
+<a href="http://spectrum.ieee.org/telecom/internet/vice-over-ip-the-voip-steganography-threat" target = "_blank">VOIP</a><p>
+正常的資料隱藏有個缺點，會留下線索讓人察覺。這篇文章提到了另一種資料隱藏的方法，通訊協定。第一種方法：及時通訊裡延遲的資訊會被丟掉，利用正常的程式會把延遲過久的封包過濾掉，把隱藏資訊藏在延遲的封包裡。第二種：利用checksum的機制，他會在損壞的封包裡區分出正確的封包，其他的封包會丟掉，所以資料可以藏在會讓checksum認為那不是正確封包的損壞封包上。第三種：藏在header檔裡。每個資料最前面都繪有一個head專門描述這整個資料，可以將資訊藏在經常變動的變數裡。
+<LI>
+<a href="http://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi/login?o=dnclcdr&s=id=%22098CYUT5652001%22.&searchmode=basic" target = "_blank"> The analysis of the steganographic technique with high image quality using secret data division and pixel value differencing </a><p>
+為了提高進行PVD隱藏之後的偽裝品質，便有了利用模數運算來縮小PVD所要藏入的差值。原本的PVD是直接把秘密資訊直接取代掉差值，秘密資訊與差值雖然會被取在同一個差值區間內，但我們總希望差距越小越好，於是有人提出了模數運算，利用mod這動作來縮小差距。取一個適當的參數e，讓新的差值mod e之後能夠等於秘密資訊，如此便能將差值的差距縮小。只要將差值mod e，把區間的上限值與下限值的差以2為底數做log知道秘密資訊站多少個bit，便能計算出原本的秘密資訊。而MPVD除了上述縮小差值外，他另外還加了一個加密參數B，讓他去變動上下限值，使區間之間不會是固定的，如此便能解決PVD以固定的下限值去隱藏資訊的缺點(固定值再加上隱藏資訊會使差值直方圖呈階梯狀不自然分部)，而縮小差值差距則能提升偽裝影像的品質。
+<LI>
+<a href = "http://wenku.baidu.com/view/0e5c570003d8ce2f006623d2.html" target = "_blank">  RS 	steganalysis </a><p>
+要了解RS分析之前，首先要先知道一些名詞以及一些函數功能。F(1):0←→1,2←→3,4←→5,.....，F(-1):-1←→0,1←→2,3←→4,....，F(0):x=x，以上三種函數，是對每個數字做+1或-1的動作，而LSB隱藏法(藏於最後一個bit)就相當於是做了F(1)或F(0)動作，由於LSB是將最後一個bit替換成秘密訊息，倒數第2個bit不會被更動，那最後一個bit就可能從0→1，1→0(F(1)動作)(2,3互換也是：10,11，4,5互換：100,101)，0→0，1→1(F(0)動作)。然後我們在定義一個函數f，他作用是將所有相鄰的值的差做總和。mask為1,0,-1相對應到(F(1),F(0),F(-1))，以下用Fm代表，G為某像素組的像素質(0~255)。如果f(Fm(G)) > f(G)，稱為Regular，f(Fm(G)) < f(G)，稱為Singular，f(Fm(G)) = f(G)，稱為Unusable。Rm為F(1)作用下Regular占所有像素組的比例，R-m為F(-1)作用下Regular占所有像素組的比例，Sm為F(1)作用下Singular占所有像素組的比例，S-m為F(-1)作用下Singular占所有像素組的比例。正常情況下無論用F(1)或F(-1)都會同等程度的混亂圖像，所以Rm跟R-m應該要非常接近，Sm與S-m也要非常相近，如果圖像是經由LSB隱藏了資訊在裡面，那麼這圖像等同於已經做過了F(1)這動作，如果我再分別做一次F(1)跟F(-1)那對稱性就會完全跑掉，藉此可得知圖像是否被嵌入訊息。
+<LI>
+<a href="http://www.researchgate.net/publication/223787992_Steganalysis_and_payload_estimation_of_embedding_in_pixel_differences_using_neural_networks" target="_blank"> Steganalysis and payload estimation of embedding in pixel-Draft </a><p>
+
+PVD是利用落的區間下去分類，所以區間長度是固定的，在差值直方圖理這些區間內每個差
+
+值所出現的頻率就會差不多，所以就能用肉眼判斷差值直方圖是否呈現不自然分布。
+<br>
+MPVD修改了固定區間值的問題，並且還利用了模數運算解決了在相同區間內出現頻率差不多的問題，但是如果再進行一次MPVD來觀測藏入前藏入後的差值直方圖的變化，便能偵測到是否有經由MPVD隱藏。
+<br>
+在差值直方圖裡面，取了0，1，-1這3個差值出現的次數來計算Q值(由於變化量最大的就是0所出現的次數)，然後依據MPVD隱藏前後Q值的比例來偵測。
+<br>
+但是無法用同一標準來判斷所有的MPVD，變化的幅度取決於藏入了多少的資訊，於是此篇文章利用了ANN(artificial neural network)學習了各種資訊，依照藏入的比例(0% , 20% , 40% , 60% , 80% , 100%)來分類，並且一樣的特徵透過MLP neural network估計藏了多少資訊在裡面。
+<br>
+最後實驗的結果在極端值時(0%, 60%, 80%, 100%)判斷正確率還蠻高的(96%, 92%, 96%, 98%)，而總準確度也高達了88.3%。
+<li>
+<a href = "file/audioPVD.pdf" target = "_blank"> Audio Steganography Using Modified LSB and PVD </a>
+<p>
+這篇主要探討的是他們自己所修改的LSB方法以及原有的PVD，做的是聲音的資訊隱藏。修改的LSB其主要目的為縮小與原始資料差距。例如：我要將以下資訊的倒數第4個bit改為0，0100 1000，如果直接修改，那麼會與原始資訊差了8(2的3次方)，但如果改成 0100 0111，那麼與原始資訊就只會相差1，他有一套詳細的演算法，有興趣的可進去連結看paper，而PVD的方法他並沒有做修改，所以它的優缺點可參考我的presentation。此片論文最後有做了效能分析，並指出這兩種方法致命傷就是很容易就被偵測到有進行資訊隱藏，未來希望能有更有效率的方法來增加capacity。
+
+<li>
+<a href = "file/Spread_Spectrum.pdf" target = "_blank"> Spread Sectrum Audio Steganography using Sub-band Phase Shifting </a>
+<p>
+首先，這裡有篇
+<a href = "file/SpreadSpectrum1.ppt"> 簡報 </a>
+簡單介紹一下何謂展頻技術。簡單介紹一下何謂展頻技術。
+<br>
+一個要被隱藏的資訊經由展頻再藏入每個頻道裡的話，資料的錯誤比率回跟Spreading rate成反比。也就是說，當spreading rate越大，資料錯誤率就會越小，但是傳送速路會變差，這篇論文就是在探討如何降低資料錯誤比例，但又不影響傳送的速率。
+<br>
+原始音訊與經由展頻後音訊的correlation如果越高，那麼錯誤的比例就會越高，本篇論文就是使用sub-band phase shifting來調整correlation的高低，藉由此方法來降低資料錯誤的比率。但要注意的是，sub-band frequency在1KHz以內的話，不管怎麼調sample shift，他的correlation永遠都很高，所以乾脆就把sub-band frequency在1KHz以內的通通消除，只取其餘1KHz以上的部分。
+<br>
+最後因為這篇論文用了M-sequence code來做展頻的動作，所以接收方解碼時只要照著編碼時一樣的code就可解碼，加上再用sub-band phase shifting降低傳送錯誤比例，與傳統資訊隱藏比較的話，資料被竊取機率降低了許多。
+
+</OL>
+</dl>
+<hr>
+<h2 id="program"> PROGRAM </h2> 
+
+<dl>
+
+<dd>
+<ol>
+<li>
+<a href = "program/hide_message.txt" target="_blank"> test LSB to hide message </a>
+<p>
+這程式的功能可以讀進BMP檔案，然後把要藏的message藏進BMP檔裡每個byte的最後兩個bit裡，目前把檔案寫入還有問題，因為我只想把有改掉的部分做write的動作，但只要fwrite或fputs之後整個檔案就會損毀。由於RAW DATA部分蠻複雜的，1 8 16 24 32 256 bit的存取方式都不同，還在加強當中。
+<li>
+<a href="program/rw.cpp" target="_blank"> hide LSB message(2) </a>
+<p>
+由於我之前在寫入檔案時問題還蠻多的，找了網路上很多東西最後找到了別人寫好的class，他寫好了
+<a href="program/read.h" target="_blank"> read </a>
+跟
+<a href="program/write.h" target="_blank"> write </a>
+的功能，read支援了蠻多中BMP格式的，但是write他只有寫24位元的部分，我用了他的class之後成功的可以將讀進來的檔案寫入新的BMP檔，然後我也做了個小測試把之前寫失敗的隱藏message(寫入失敗，但隱藏這部分是成功的)拿過來用，目前這程式能做到隱藏100字元以內的訊息在24位元的BMP圖裡面不被發現。
+<br>
+這程式是在windows底下執行的，然後跟我presentation裡的Hide4pgp一樣需要用command line下去執行，次序是：程式 被隱藏的圖片 輸出的圖片 按下enter後會要你輸入message，輸入完按下enter程式執行結束。大家可以玩看看。
+<li>
+<a href = "program/pvd.cpp" target = "_blank"> Hide PVD Message </a>
+<p>
+目前做到能夠經由PVD隱藏訊息，但是我想pvd是利用兩相鄰像素差異來藏訊息，所以應該要改成同一顏色的兩相鄰像素而不是同一位置的不同顏色像素。
+<br>
+目前遇到的問題是：
+<br>
+如果要截取訊息時，要怎麼做才能知道訊息已經截取結束了不會一直做下去。
+<br>
+另一問題是，遇到0以下的時候該怎麼解決，像素不會有負值，如果是用unsigned 	char又會跳回最大值。
+<li>
+<a href = "program/histogram.cpp" target = "_blank"> PD Histogram </a>
+<p>
+這程式能將圖片的差值直方圖的文字檔資料顯示出來，分成RGB這3個文字檔，第一排為差值，第二排為該差值出現次數。
+<br>
+使用方法為  histogram.exe testpicture.bmp R.txt G.txt B.txt，第一個參數為執行檔，第二個參數為測試的圖片，第3.4.5參數為TXT輸出檔，分別輸出RGB的差值出現次數文字檔。
+<li>
+<a href = "program/pvdmessage.cpp" target = "_blank"> Hide And Retrieve message with PVD </a>
+ <p>
+目前程式可以經由PVD方式隱藏資訊及解開所隱藏的資訊，之後將會開始做隱藏圖片的部分，目前想到的問題是，如果隱藏圖片的話那麼size要怎麼藏在pixel裡面，目前訊息比較短所以我就塞在一個pixel裡面，未來的圖片size會蠻大的，應該要有一個方法將資訊藏在固定的幾個pixel裡面。
+<br>
+<a href = "file/pvd.exe" target = "_blank"> 此為執行檔 </a>
+<li>
+<a href = "program/hide_picture_ing" target = "_blank"> Hide picture in picture </a>
+<p>
+這是一支可以藏圖的程式，指令是-ph，可以將秘密圖片以PVD方式藏進圖片裡，不過尚未成功，藏完後圖形可以用肉眼看出與原圖有所差異，我總共事過了兩張圖片分別為
+<a href = "file/hide_ex1.bmp" target = "_blank"> 淺色背景 </a>
+與
+<a href = "file/hide_ex2.bmp" target = "_blank"> 深色背景</a>  
+，結果都可看出有異常的斑點，因為目前做法是每個pixel每個顏色就藏到相對應的顏色上，這樣做會造成一個pixel就要被改3次，不過理論上應該還是會看不出來有所差異，目前還再加強中。
+
+<br>
+<a href = "file/hide_picture.exe" target = "_blank"> 此為執行檔 </a>
+<li>
+<a href = "program/hide_picture.cpp" target = "_blank"> Hide picture OK ! </a>
+<p>
+可以把圖片乾淨的藏進去了！解決了上一個斑點的問題，原因出在：新的像素差值與救的像素差值有可能是負的，這點我沒考慮進去，前面pixel要減，後面pixel要加，我上個程式就很理所當然的指考慮前面會不會小於零以及後面會不會大於255。當像素差值為負的時候，情況就會完全相反，所以4種情況都要考慮，藏圖進去之後肉眼觀看不出有異樣。
+<br>
+<a href = "file/hide_picture.exe"> 此為執行檔</a>
+<li>
+<a href = "program/sndfiletest.c" target = "_blank"> Read and write wav file use libsndfile </a>
+<p>
+目前能夠從wav檔讀data到string裡面，然後再寫回程wav檔案，利用
+<a href = "http://www.mega-nerd.com/libsndfile/api.html" target = "_blank"> libsndfile </a>
+裡面的function達成。
+<br>
+<li>
+<a href = "program/audiopvd_message.cpp" target = "_blank"> Hide message in WAV         </a>
+<p>
+可以藏入文字到WAV檔案裡面，與圖像不同點在於audio的data可能為負的，到時候要處理邊界的問題會與圖形檔不同。
+<a href = "file/pvd_message.png" target = "_blank"> 附圖 </a> 
+<br>
+<li>
+<a href = "program/audio_hidefile.cpp" target = "_blank"> Hide file in WAV </a>
+<p>
+初步能夠藏入檔案，但是聽的出來有雜訊，可能遇到與藏圖時一樣的問題。
+<a href = "file/left.wav" target = "_blank"> 藏入前 </a>
+與
+<a href = "file/testout.wav" target = "_blank"> 藏入後 </a>比較。
+在取出部分，目前預定了10bit大小來放秘密訊息的大小，考慮後面會超過這數字所以定義成可變動(但文字的話不用那麼多bit浪費空間)，如果這取出動作能夠成功的話直接套用在圖形、聲音、文字都能試用。
+<br>
+<li>
+<a href = "program/steganography/steganography.exe"> steganography執行檔(ubuntu) </a>
+<p> 
+整合了之前所寫的圖形跟聲音(bmp.wav)，目前有三種資料隱藏方法：PVD、PVD-LSB、PVD-matrix_embbeding(演算法可以看我的presentation)，環境是在Ubuntu上。 若想要compile下列檔案請參考
+<a href = "program/steganography/README.txt" target = "blank"> README </a>
+。
+<p>
+<ul>
+    <li>
+    <a href = "program/steganography/steganography.cpp" target = "_blank"> steganography.cpp </a>
+     : 主要是main function，接收使用者所下的指令參數，做相對應的隱藏。
+    <li>
+    <a href = "program/steganography/format.cpp" target = "_blank"> format.cpp </a>
+    <a href = "program/steganography/format.h" target = "_blank"> format.h </a>
+     : 負責讀寫檔案，支援BMP跟WAV兩種格式。
+    <li>
+    <a href = "program/steganography/datahiding.cpp" target = "_blank"> datahiding.cpp </a>
+    <a href = "program/steganography/datahiding.h" target = "_blank"> datahiding.h </a>
+     : 裡面共有三種隱藏方式，目前能夠將檔案或字串藏進BMP或WAV。
+    <p>
+    <li>
+    <a href = "program/steganography/psnr.cpp" target = "_blank"> psnr.cpp </a>
+     : 針對我做的方法來計算psnr值。
+
+</ul>
+</ol>
+
+</dl>
+
+<hr>
+
+<h2 id="presentation"> PRESENTATION AND PAPER </h2>
+
+<dl>
+<dd>
+
+<table broder = '1'>
+<tr>
+  <td>
+    <ol>
+      <li><a href="presentation/Detection%20of%20%20PVD.pptx"> Detection of  PVD</a></li>
+      <li><a href="presentation/Hide4pgp.pptx"> Hide4pgp(Bit map) </a></li>
+      <li><a href="presentation/Pvd%20example.pptx"> Pvd example</a></li>
+      <li><a href="presentation/PVD%20steganalysis"> PVD steganalysis </a></li>
+      <li><a href="presentation/pesq.ppt"> Perceptual Evaluation of Speech Quality </a></li>
+      <li><a href="presentation/Audio_PVD.pptx"> Audio pvd </a></li> 
+      <li><a href="presentation/SpreadSpectrumAudioSteganography.pptx"> Spread Spectrum Audio Steganography </a></li>
+      <li><a href="presentation/nd22-eric_lily-v10.pdf" target="_blank"> Paper :像素值差異偵密技術應用於彩色影像集之研究 
+ [On the Study of Anti-steganalysis on Pixel Value Differencing (PVD) for True Color Image Files] </a></li>
+    </ol>
+  </td>
+  <td>
+    <ol>
+      <li><a href="presentation/Audio_pvd_steganography.pptx"> A Novel Audio Steganography Scheme using Amplitude Differencing (WAV format)</a></li>
+      <li><a href="presentation/A_HIGH_CAPACITY_WATERMARKING_TECHNIQUE_FOR_STEREO_AUDIO.pptx"> A HIGH CAPACITY WATERMARKING TECHNIQUE FOR STEREO AUDIO </a></li>
+      <li><a href="presentation/pvd_in_stereo.pdf" target="_blank"> 科技部：立體聲的資料隱藏(計畫編號：103-2815-C-260-024-E) </a></li> 
+      <li><a href="presentation/Pixel_value_differencing.pdf" target="_blank"> Introduction of PVD and Matrix embedding steganography </a></li>
+      <li><a href="presentation/audio_pvd.pdf" target="_blank"> Audio data value differencing </a></li>
+      <li><a href="presentation/Image_steganographic_scheme_based_on_pvd_and_lsb.pptx"> Image PVD and LSB steganography improve PVD </a></li> 
+      <li><a href="presentation/storyboard.jpg" target = "_blank"> Storyboard </a></li>   
+      <li><a href="presentation/Project_Eric.pptx"> PVD and Matrix embedding steganography </a></li>
+      <li><a href="presentation/100321048.pdf" target="_blank"> 專題海報：基於像素值差異與矩陣嵌入應用於彩色影像集之研究 </a></li>
+      <li><a href="presentation/100321048_paper.pdf" target="_blank"> 專題paper：基於像素值差異與矩陣嵌入應用於彩色影像集之研究 (Image steganographic scheme based on pixel-value differencing and matrix embedding methods) </a></li> 
+      <li><a href="presentation/final_proposal.pptx"> 專題競賽PPT </a></li>
+      <li><a href="presentation/cn.pdf" target = "_blank"> 計算機網路期末專案 </li></a>
+      <li><a href="presentation/UDP_Source_Port_Steganography.pptx"> UDP Source Port Steganography </a></li>
+    </ol>
+  </td>
+</tr>
+</table>
+</dl>
+
+<hr>
+
+<h2 id="howto"> HOWTO </h2>
+<dl>
+<dd>
+<ol>
+<li><a href="HOWTO/sicuse.html"> how to use sic simulator and compile</a>
+<li><a href="HOWTO/hide4pgp.html"> how to install hide4pgp in linux </a>
+<li><a href="HOWTO/libsndfile.html"> how to install libsndfile </a>
+<li><a href="HOWTO/pvdmme.html"> how to compile and test my program </a>
+</ol>
+</dl>
+
+<hr>
+
+<h2 id="audio_PVD"> 科技部計畫 </h2>
+<font size = "6" align = "center"><h3> Audio DFT-PVD </h3></font>
+背景知識： <p>
+<dd>
+<li><a href = "presentation/fourier_transform.pdf"> 傅立葉級數 </a></li>
+</dd>

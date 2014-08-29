@@ -1,0 +1,87 @@
+<html>
+<head>
+</head>
+<body>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<font size="6"><h3> How to use SIC </h3></font>
+<dl>
+<dd>
+我的linux是Ubuntu，iso檔可以直接在官網下載，我的版本是13.04，以下說明都是在
+
+ubuntu環境上執行。
+<p>
+在學習如何使用SIC simulator之前，首先要先具備一些基本工具：pascal compiler, SIC 
+
+source
+<p>
+<UL>
+<LI>
+pascal compiler可以下這道指令安裝：
+sudo apt-get install fp-compiler-2.6.0
+<LI>
+SIC source 可以到ftp rohan.sdsu.edu.tw (faculty/beck/SystemSoftware.tar這檔案)下
+
+載  (課本的VII頁數)
+</UL>
+
+<p>
+<font size="4"> <h2> COMPILE </h2></font>
+<dl>
+<dd>
+這邊有一個device為SRCFILE，他是放你寫好的程式碼，為input device
+<br>
+下載完把tar檔打開後，裡面有一個sicasm.pas檔，用pascal compiler compile這個檔案
+指令：fpc sicasm.pas
+<p>
+<img src="../file/01.jpg">
+<p>
+我之後要測的程是在別的資料夾，在這裡我先把東西都丟到我將來要操作的資料夾裡
+
+(test.asm是我自己寫好的程式碼)
+<p>
+<img src="../file/02.jpg"><p>
+sicasm就變成可執行檔，當你要compile SIC程式碼時，先把你寫好的程式複製到SRCFILE裡
+
+面
+<p>
+<img src="../file/03.jpg"><p>
+再執行sicasm，後面接的參數是你寫好的程式碼檔案名稱。
+<p>
+<img src="../file/04.jpg"><br>
+執行完後會出現OBJFILE，LISFILE，INTFILE這3個檔案
+<p>
+</dl>
+<font size="4"><h2> 使用simulator </h2></font>
+<dl>
+<dd>
+使用之前，必須先知道一些device的功用，DEV00、DEVF1、DEVF2、DEVF3為input device，
+
+DEV04、DEV05、DEV06、LOG為output device
+<p>
+
+DEV00放入sicboot.obj<br>
+DEVF1放入sicldr.obj<br>
+DEVF2放入你自己寫完編譯好的obj檔<br>
+DEVF3是你要輸入到你的程式裡面的input file(程式沒有要輸入資料的話不用複製)
+<p>
+<img src="../file/11.jpg"><p>
+接下來只要再將sicsim.pas編譯程可執行檔
+<p>
+
+<img src="../file/12.jpg"><p>
+就能夠使用simulator了
+<p>
+<img src="../file/13.jpg"><p>
+
+</dl>
+
+這邊有我從網路上抓的相關教學<br>
+<ul>
+<li>
+<a href="../file/sicuse_2009 (1)"> sicsim教學1 </a>
+<li>
+<a href="../file/sicuse_detail"> sicsim教學2 </a>
+</ul>
+</dl>
+</body>
+</html>

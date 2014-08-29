@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+        <style>
+            body{
+               background-color:#000000;  
+            }
+            h1{
+                color:white;
+                font-size:18px;
+                text-indent:50px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            由於我之前在寫入檔案時問題還蠻多的，找了網路上很多東西最後找到了別人寫好的class，他寫好了
+            <a href="read.h" target="inner"> read </a>
+            跟
+            <a href="write.h" target="inner"> write </a>
+            的功能，read支援了蠻多中BMP格式的，但是write他只有寫24位元的部分，我用了他的class之後成功的可以將讀進來的檔案寫入新的BMP檔，然後我也做了個小測試把之前寫失敗的隱藏message(寫入失敗，但隱藏這部分是成功的)拿過來用，目前這程式能做到隱藏100字元以內的訊息在24位元的BMP圖裡面不被發現。
+            <br>
+            這程式是在windows底下執行的，然後跟我presentation裡的Hide4pgp一樣需要用command line下去執行，次序是：程式 被隱藏的圖片 輸出的圖片 按下enter後會要你輸入message，輸入完按下enter程式執行結束。大家可以玩看看。
+        </h1>
+        <iframe name = "inner" charset = "UTF-8" src = "hide_message.txt" style = "width:800px;height:400px;background-color:white;">
+        </iframe>
+    </body>
+</html>

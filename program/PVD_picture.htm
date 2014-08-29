@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+        <style>
+            body{
+               background-color:#000000;  
+            }
+            h1{
+                color:white;
+                font-size:18px;
+                text-indent:50px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            這是一支可以藏圖的程式，指令是-ph，可以將秘密圖片以PVD方式藏進圖片裡，不過尚未成功，藏完後圖形可以用肉眼看出與原圖有所差異，我總共事過了兩張圖片分別為
+            <a href = "../file/hide_ex1.bmp" target = "inner"> 淺色背景 </a>
+            與
+            <a href = "../file/hide_ex2.bmp" target = "inner"> 深色背景</a>  
+            ，結果都可看出有異常的斑點，因為目前做法是每個pixel每個顏色就藏到相對應的顏色上，這樣做會造成一個pixel就要被改3次，不過理論上應該還是會看不出來有所差異，目前還再加強中。
+            <br>
+            <a href = "../file/hide_picture.exe" target = "_blank"> 此為執行檔 </a>
+        </h1>
+        <iframe name = "inner" charset = "UTF-8" src = "hide_picture_ing" style = "width:800px;height:400px;background-color:white;">
+        </iframe>
+    </body>
+</html>

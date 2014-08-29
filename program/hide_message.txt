@@ -1,0 +1,122 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+#define my_file "test.bmp"
+
+typedef unsigned char byte;
+typedef unsigned short word;
+typedef unsigned long dword;
+
+struct file_bmp
+{
+	byte identifier[2];
+};
+
+struct file_header
+{
+    dword  File_Size;                    
+    dword  Reserved;                          
+    dword  Bitmap_Data_Offset;    
+};
+
+struct infor_header
+{
+    dword   Bitmap_Header_Size; 
+    dword   Width;                             
+    dword   Height;                            
+    word    Planes;                             
+    word    Bits_Per_Pixel;             
+    dword   Compression;                 
+    dword   Bitmap_Data_Size;     
+    dword   H_Resolution;               
+    dword   V_Resolution;               
+    dword   Used_Colors;                 
+    dword   Important_Colors;      
+};
+
+struct color
+{
+	word blue;
+	word green;
+	word red;
+};
+int main()
+{
+	FILE *bmp;
+
+	struct file_bmp check;
+	struct file_header head;
+	struct infor_header info;
+
+	int total;
+	char testc[100];
+	char message[100];
+ 
+	
+	bmp = fopen (my_file, "r");
+
+	if(bmp == NULL)
+	{
+		printf("no file\n");
+		return -1;
+	}
+	
+	fread (&check, 2, 1, bmp);
+	printf("%c%c", check.identifier[0], check.identifier[1]);
+	if(check.identifier[0] != 'B' ||check.identifier[1] != 'M')
+	{
+		printf("not bmp!\n");
+		//return -1;
+	}
+	else
+		printf("the file format:%c%c\n", check.identifier[0], check.identifier[1]);
+
+	fread (&head, sizeof(head), 1, bmp);
+	fread (&info, sizeof(info), 1, bmp);
+
+	fread (testc, sizeof(testc), 1, bmp);
+	fclose(bmp);
+	printf("%d\n", info.Bitmap_Data_Size);
+	printf("%d\n", head.File_Size);
+	//printf("%d", testc[0][0]);
+	printf("please input message:");
+	scanf("%s", message);
+	printf("\n");
+	for(int i = 0; i < 10; i++)
+		printf("oring:%d\t", testc[i]);
+	printf("\n");
+	total = strlen(message) * 8 / 2;
+	for(int index = 0; index < strlen(message); index++)
+	{
+		bool temp[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+		int make = message[index];
+		int i = 8;
+		while (make >= 2)
+		{
+			i--;
+			temp[i] = make % 2;
+			make /= 2;
+		}
+		temp[i - 1] = make;
+		int testindex = index * 4;
+		for(int j = testindex, k = 0; j < testindex + 4; j++, k += 2)
+		{
+			int hide = temp[k] * 2 + temp[k+1];
+			testc[j] += hide;
+		}
+	}
+	for(int i = 0; i < 10; i++)
+		printf("after:%d\t", testc[i]);
+	fopen(my_file, "w");
+	fseek(bmp, 55, SEEK_SET);
+	
+	fputs(testc, bmp);
+	fclose(bmp);
+	char a;
+	fopen(my_file, "r");
+	fread(&a, 1, 1,bmp);
+	printf("%d\n", testc[1]);
+	printf("%d\n", a);
+	return 0;
+}

@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+        <style>
+            body{
+               background-color:#000000;  
+            }
+            h1{
+                color:white;
+                font-size:18px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            整合了之前所寫的圖形跟聲音(bmp.wav)，目前有三種資料隱藏方法：PVD、PVD-LSB、PVD-matrix_embbeding(演算法可以看我的presentation)，環境是在Ubuntu上。 若想要compile下列檔案請參考
+            <a href = "steganography/README.txt" target = "inner"> README </a>
+            。
+            <p>
+            <ul>
+                <li>
+                <a href = "steganography/steganography.cpp" target = "inner"> steganography.cpp </a>
+                : 主要是main function，接收使用者所下的指令參數，做相對應的隱藏。
+                <li>
+                 <a href = "steganography/format.cpp" target = "inner"> format.cpp </a>
+                 <a href = "steganography/format.h" target = "inner"> format.h </a>
+                 : 負責讀寫檔案，支援BMP跟WAV兩種格式。
+                <li>
+                <a href = "steganography/datahiding.cpp" target = "inner"> datahiding.cpp </a>
+                <a href = "steganography/datahiding.h" target = "inner"> datahiding.h </a>
+                : 裡面共有三種隱藏方式，目前能夠將檔案或字串藏進BMP或WAV。
+                <p>
+                <li>
+                 <a href = "steganography/psnr.cpp" target = "inner"> psnr.cpp </a>
+                 : 針對我做的方法來計算psnr值。
+
+                <p>
+                 以上程式也能在我的
+                 <a href = "https://github.com/EastL/steganography" target = "_blank"> GitHub</a>
+                 上下載。 
+            </ul>
+        </h1>
+        <iframe name = "inner" charset = "UTF-8" src = "audio_hidefile.cpp" style = "width:800px;height:400px;background-color:white;">
+        </iframe>
+    </body>
+</html>

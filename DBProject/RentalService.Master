@@ -1,0 +1,48 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="RentalService.master.cs" Inherits="RentalService.RentalService" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .head_table {
+            width: 1117px;
+        }
+        .head_table_column {
+            width: 279px;
+        }
+    </style>
+    </head>
+<body style="height: 260px">
+    <form id="form1" runat="server">
+    <div style="background-image: url('/website_background/old_map_2X.png')">
+    <div style="height: 100px; width: auto;">
+        <asp:Label ID="L_RentalService" runat="server" Font-Names="Forte" Font-Size="70pt" style="text-align: left" Text="RentalService"></asp:Label>
+    </div>
+        <div style="width: auto; height: 30px; font-family: Impact; font-size: x-large;">   
+            <table class="head_table">
+                <tr>
+                    <td class="head_table_column"><asp:HyperLink ID="HL_Home" runat="server" NavigateUrl="~/SlaveHome.aspx">Home</asp:HyperLink></td>
+                    <td class="head_table_column"><asp:HyperLink ID="HL_Rent" runat="server" NavigateUrl="~/SlaveRent.aspx">Rent</asp:HyperLink></td>
+                    <td class="head_table_column"><asp:HyperLink ID="HL_PropertyControl" runat="server" NavigateUrl="~/SlavePropertyControl.aspx">PropertyControl</asp:HyperLink></td>
+                    <td class="head_table_column"><asp:HyperLink ID="HL_GroupManagement" runat="server" NavigateUrl="~/SlaveGroupManagement.aspx">GroupManagement</asp:HyperLink></td>
+                </tr>
+            </table>
+        </div>
+        <div style="width: auto; height: auto; font-family: 標楷體;">
+             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+             </asp:ContentPlaceHolder>
+        </div>
+    <div style="height: 100px; width: auto">
+    </div>
+    
+    </div>
+    </form>    
+    
+</body>
+</html>

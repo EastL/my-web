@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+        <style>
+            body{
+               background-color:#000000;  
+            }
+            h1{
+                color:white;
+                font-size:18px;
+                text-indent:50px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            可以把圖片乾淨的藏進去了！解決了上一個斑點的問題，原因出在：新的像素差值與救的像素差值有可能是負的，這點我沒考慮進去，前面pixel要減，後面pixel要加，我上個程式就很理所當然的指考慮前面會不會小於零以及後面會不會大於255。當像素差值為負的時候，情況就會完全相反，所以4種情況都要考慮，藏圖進去之後肉眼觀看不出有異樣。
+            <a href = "../file/hide_picture.exe"> 此為執行檔</a>
+        </h1>
+        <iframe name = "inner" charset = "UTF-8" src = "hide_picture.cpp" style = "width:800px;height:400px;background-color:white;">
+        </iframe>
+    </body>
+</html>

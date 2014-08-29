@@ -1,0 +1,51 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<dl>
+<dt>7/10
+<dd>Graduate School Survival Guide<br>
+這篇講的是如何跟自己的BOSS互動，如何有效率、有組織的讀與自己專長領域的相關文獻，以及如何在自己研究上不斷成長等等，我覺得目前對我有最大幫助的是列出工作的時間分配清單，因為我每次事情都會到deadline前的幾天才會開始認真的去做，人都有惰性，想說還有時間，但如果時間表排出來的話，就可以看到每一項小工作的deadline了。時間管理跟有效的運用時間也是老師一再強調的，我還需再改進。
+<p>
+然後老師的前兩篇電網的文章Beyond the SmartGrid跟Societal implications of the emerging smart grid，第一篇是講說如何讓電錶能同時處理大小電流問題，如何讓sensors進行溝通，主要是透過ZigBee無線網路協定，低速、低成本、能支援大量網路節點。而第二篇是在探討安全性的問題，由於電表上面的資料在一般狀況下不會去進行加密動作，每個人都能去取得上頭的資料，便有了安全上的考量，當然每個人都有用電的習慣，所以這也能成為一些破案的證據。<br>
+後兩篇文章 Cyber warfare: steganography vs. steganalysis跟Hiding data, forensics, and anti-forensics，第一篇他就介紹了蠻多種藏法，最典型也是最陽春的藏法就是把LSB改成要藏的data，另一種Masking approaches(浮水印?)是把某一區域的值用藥藏的值做mask。Transform domain techniques，他把某一區做了資料嵌入(DCT.DFT.DWT)，是把資料丟進那些動作再放入相對應位置嘛？有點難以理解。後面還有幾種方法以及如何分析那些動過手腳的檔案，我還沒詳細的把他理解完。
+<p>
+再來是找相關的程式，我找到的這個令我覺得蠻神奇的，原來不只可以單一檔案藏進另一個檔案，還能夠把一個檔案藏近多個檔案裡，他是把要藏的檔案分散到每個檔案裡，還能在裡面調他要佔多少空間，另外他好玩的地方是他還多設計了一道牆，他設計成一組carrier可以藏兩個檔案，而這兩個檔案分別對應到不同的密碼，這樣我只要給別人錯的密碼，他還是拿不到我真正的檔案。
+<br>
+另一個程式並不像上面那個程式下載好就能執行，他沒有一個執行檔，所已花了一些時間在研究要怎麼執行他，他變成要在CMD裡頭下指令他才會執行，還蠻像UNIX的，不過這程式跟上一個程式比起來比較單調，他是單一檔案藏進另一個檔案裡頭。
+<p>
+最後關於這兩天學到的課程，之前在LISP有用過UNIX環境，不過也就只會一些簡單的指令罷了。
+<p>
+目前會的工具有：PHP 能寫一些小程式在網頁上，RCS 讓multi uesr在同一個group底下能夠有好的處理文件方式，BASH 在UNIX環境下能夠以更簡短的指令達到目的，Shell Script在這邊提供了程式，在你要做的事情上沒有現成的指令能寫一些小程式，AWK 有強大處理統整資料的能力，指令還能再搭配程式，所以可以加一些你想要的要求在裡面，Regular expression 有著強大處理字串的能力，搭配指令或是vim都可以解決有規律的動作。
+<p>
+<dt>7/16
+<dd>
+在secret sharing方面：Shamir's scheme，首先，將你的secret分成M個部分，然後，如果我擁有這M項資訊裡的其中t項或是t項以上，那麼我就能夠以某種方式知道secret了。他的做法是這樣：在多項式中，N次多項式必須至少有N+1個點才能完整的決定此多項式，所以我如果要知道一個degree為t-1的多項式，那麼我就至少要用有t個點(t項資訊)。因此，我們把secret放在設定的degree為t-1的多項式裡其中一個係數，其他係數以亂數方式產生，之後在此函數上找出M個點，這樣就設定完成了！當我要知道此secret(多項式)時，至少必須知道在M項資訊裡的其中t項才有辦法。
+<p>
+openpuff:他利用的是libObfuscate，可以多重加密，這也是我納悶的地方，openpuff是一套資料隱藏的軟體，但我找到的source部分卻是多重加密。libobfuscate他裡面有16種加密演算法，裡面我有蠻多地方看不懂的，他一開始利用你輸入的密碼，用4種不同的加密演算法產生4個key array，然後將這4個array用CSPRNG連到每個cipher，這樣每個資料都會先經過CSPRNG，之後每個cipher會獨立進行加密動作，而加密的key就是藉由鋼所產生的key array。我所看完的理解是這個樣子，由於我目前還沒弄懂CSPRNG是如何運作的，所以有可能我理解錯方向了。
+<p>
+最後上禮拜所講的排時間表，我發現我只要一有事情卡住，我就會一直重複去處理那件事情，直到達到我要的目的為止，但是其他事情就被我延後處理了，太執著好像也不是一件好事。
+<dt>8/20
+<dd>
+ipv6以連到Qnap並創了帳號
+<p>
+PVD、MPVD具體例子我已經把PPT檔傳到我的網頁上了(HPVD比較複雜些，我還沒全部弄懂)，MPVD裡面的模數運算我也去找了相關的文件，了解他是如何運作的
+<p>
+requirement.html文件我也簡單的寫了我每個禮拜的進度
+<p>
+Linux Sound API 目前我玩了一下學長的code，也上網找到了linux版本的wave api，但是目前compile他說少了一些pulse的header檔，目前還在看相關文件
+<p>
+vsl我自己試著用C++寫隱藏message到BMP的程式，網頁上有我的程式碼，但是在fwrite部分我好像觀念非常模糊，每次寫進去時檔案就會被我損毀(file header 與 informaton header 都變成0)，目前還在看相關raw data文件，我也有看了RS分析的文章，在網頁裡也有寫下我對他基本的介紹。
+<p>
+然後讀書的進度與老師的規定落後了許多，目前只看到了2-2，因為之前看完第一張後沒有實際操作SIC，很多觀念似懂非懂，所以我先把編譯.asm file跟如何操作simulator弄熟，編譯的部分我問了一下學長姐跟克寧老師，成功的能夠在我自己的linux上編譯成obj,lst,int三個檔案(在這裡我必須承認是借用克寧老師用shell script寫好的run-asm,不過我後來有閱讀老師的程式以及相關的doc文件)，在實際操作simulator部分我看了網路的simuse，不過就卡在我向大家問的問題那邊。
+<p>
+<dt>
+9/4
+<dd>
+pvd steganalysis:找了好幾篇文章，讀懂了Steganalysis and payload estimation of embedding in pixel-Draft裡面pvd跟mpvd的隱藏分析，在我的
+<a href="http://ms12.voip.edu.tw/~ddp509/ncnu-research.html#read" target="_blank"> ncnu-research </a>
+有基本的介紹與我的簡報。
+<br> 
+在程式方面，之後可能會寫一些隱藏跟分析的程式，於是我自己練習了
+<a href="http://ms12.voip.edu.tw/~ddp509/ncnu-research.html#program" target="_blank"> BMP檔的message隱藏</a>
+，主要的讀跟寫應該能套用在之後要寫的程式上。
+<p>
+現在知道了隱藏方式跟分析方式，我想之後先找看看有沒有PVD隱藏跟分析的程式，沒有的話就自己寫，然後想想反偵測的方式，最簡單就是直接PVD藏入圖片，或者自己寫個程式依照PVD方式亂加參數進去圖片裡。
+</dl>

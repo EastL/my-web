@@ -1,0 +1,169 @@
+SIC Assembler V1.2
+
+1000        TEST     START   1000                                             
+1000 00101E FIRST    LDA     ONE                                              
+1003 181021          ADD     TWO                                              
+1006 181024          ADD     THREE                                            
+1009 0C102A          STA     SUM                                              
+            .                                                                 
+100C 281027          COMP    FOUR                                             
+100F 341018          JGT     THIS                                             
+1012 30101B          JEQ     THAT                                             
+1015 38101B          JLT     THAT                                             
+            .                                                                 
+1018 1C1027 THIS     SUB     FOUR                                             
+            .                                                                 
+101B 0C102A THAT     STA     SUM                                              
+            .                                                                 
+            .                                                                 
+101E 000001 ONE      WORD    1                                                
+1021 000002 TWO      WORD    2                                                
+1024 000003 THREE    WORD    3                                                
+1027 000004 FOUR     WORD    4                                                
+102A 000000 SUM      WORD    0                                                
+102D                 END     FIRST                                            
+102D                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1030                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1033                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1036                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1039                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+103C                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+103F                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1042                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1045                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1048                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+104B                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+104E                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1051                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1054                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1057                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+105A                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+105D                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1060                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1063                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1066                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1069                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+106C                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+106F                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1072                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1075                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1078                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+107B                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+107E                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       
+1081                                                                          
+ **** missing operation code                            
+ **** statement should not follow end statement         
+ **** unrecognized operation code                       
+ **** missing or misplaced operand in instruction       

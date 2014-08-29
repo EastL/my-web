@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+        <style>
+            body{
+               background-color:#000000;  
+            }
+            h1{
+                color:white;
+                font-size:18px;
+                text-indent:50px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1> 這程式的功能可以讀進BMP檔案，然後把要藏的message藏進BMP檔裡每個byte的最後兩個bit裡，目前把檔案寫入還有問題，因為我只想把有改掉的部分做write的動作，但只要fwrite或fputs之後整個檔案就會損毀。由於RAW DATA部分蠻複雜的，1 8 16 24 32 256 bit的存取方式都不同，還在加強當中。
+        </h1>
+        <iframe src = "hide_message.txt" style = "width:800px;height:400px;background-color:white;">
+        </iframe>
+    </body>
+</html>

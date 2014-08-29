@@ -1,0 +1,105 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+#define total_size "catche_size:"			//設定基本字串轉換方便程式撰寫
+#define block_size "catche_block_size:"
+#define ways "#_cache_ways:"
+#define set "#_cache_sets:"
+#define lines "#_cache_lines:"
+#define tag_bit "#_tag_bits:"
+
+using std::cin; 
+using std::cout;
+using std::endl;
+using std::string;
+using std::getline;
+using std::ifstream;
+using std::ofstream;
+
+int cache_size;				//將基本參數設為global
+int cache_block_size;
+int cache_sets;
+int cache_lines;
+int cache_ways;
+int tag_bits;
+
+bool check_command(int num)
+{
+	if (num == 1)		//只有一個參數代表user直接執行此檔案
+	{
+		cout << "請用command line執行 :" << endl			//提醒使用者用cmd來執行此程式
+		<< "\t第一個參數為此執行檔" << endl 
+		<< "\t第二個參數為input檔" << endl 
+		<< "\t第三個參數為output檔" << endl;
+
+		return 0;
+	}
+	if (num != 3 && num != 1)		//使用者下錯參數狀況
+	{
+		cout << "command line請給訂三個參數" << endl;
+		return 0;
+	}
+	if (num == 3)		//正確參數應可執行
+		return 1;
+}
+
+int SwitchString(string strname)			//定義字串的代碼，方便switch用
+{
+	if (strname == total_size)
+		return 1;
+	if (strname == block_size)
+		return 2;
+	if (strname == ways)
+		return 3;
+	if (strname[0] == '0' && strname[1] == 'x')
+		return 4;
+}
+
+void InputToValue(string fn)
+{
+	ifstream pname(fn);	//開啟檔案
+	string str;		//將來讀到的每一行都儲存為str
+
+	while(getline(pname,str))
+	{
+		int t_count = 0;
+		string name, temp_value;
+
+		for (int i = 0; i < str.size(); i++)
+		{
+			if (str[i] != ' ')
+				name += str[i];
+			if (str[i] == ' ' && name.size() != 0)
+			{
+				t_count = i;
+				break;
+			}
+		}
+		
+		for (int i = t_count; i < str.size(); i++)
+			if (str[i] != ' ')
+				temp_value += str[i];
+		switch (SwitchString(name))
+		{
+			case 1://catche_size，判斷是KB還是Byte，然後將前面的字串轉為數字
+				if (temp_value[temp_value.size() - 2] == 'K' || temp_value[temp_value.size() - 2] == 'k')
+				{
+
+				}
+			case 2:
+			case 3:
+			case 4:
+		}
+		//cout << name << endl << temp_value << endl;
+	}
+}
+
+int main(int argc, char **argv)
+{
+	bool excute = check_command(argc);	//確認是否用cmd執行
+	if (!excute)
+		exit(0);		//如果參數不符合規定則停止程式
+
+	InputToValue(argv[1]);	//將input file的值丟到相對應參數，input檔名為第一個參數
+}
